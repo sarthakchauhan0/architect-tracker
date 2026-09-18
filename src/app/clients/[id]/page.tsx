@@ -1063,10 +1063,11 @@ function ClientDetailContent({ params }: PageProps) {
                     <input
                       type="number"
                       required
-                      min="1"
-                      step="500"
-                      value={paymentAmount}
-                      onChange={(e) => setPaymentAmount(Number(e.target.value))}
+                      min="0"
+                      step="any"
+                      placeholder="e.g. 10000"
+                      value={paymentAmount === 0 ? '' : paymentAmount}
+                      onChange={(e) => setPaymentAmount(e.target.value === '' ? 0 : Number(e.target.value))}
                       className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-200 text-xs focus:outline-none focus:border-amber-500 font-bold"
                     />
                   </div>
@@ -1168,9 +1169,11 @@ function ClientDetailContent({ params }: PageProps) {
                     <input
                       type="number"
                       required
-                      min="1"
-                      value={expenseAmount}
-                      onChange={(e) => setExpenseAmount(Number(e.target.value))}
+                      min="0"
+                      step="any"
+                      placeholder="e.g. 2500"
+                      value={expenseAmount === 0 ? '' : expenseAmount}
+                      onChange={(e) => setExpenseAmount(e.target.value === '' ? 0 : Number(e.target.value))}
                       className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-slate-200 text-xs focus:outline-none focus:border-amber-500 font-bold"
                     />
                   </div>

@@ -291,10 +291,11 @@ export const ClientModal: React.FC<ClientModalProps> = ({
               <input
                 type="number"
                 min="0"
-                step="1000"
+                step="any"
                 required
-                value={totalProjectAmount}
-                onChange={(e) => setTotalProjectAmount(Number(e.target.value))}
+                value={totalProjectAmount === 0 ? '' : totalProjectAmount}
+                onChange={(e) => setTotalProjectAmount(e.target.value === '' ? 0 : Number(e.target.value))}
+                placeholder="e.g. 150000"
                 className="w-full px-3.5 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-slate-200 text-sm focus:outline-none focus:border-amber-500 transition-colors font-medium"
               />
               <span className="text-[11px] text-slate-500 mt-1 block">
