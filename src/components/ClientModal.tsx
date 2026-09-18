@@ -22,7 +22,8 @@ export const ClientModal: React.FC<ClientModalProps> = ({
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [projectName, setProjectName] = useState('');
-  const [projectType, setProjectType] = useState('Residential');
+  const [projectType, setProjectType] = useState<'Turnkey' | 'Consultation' | string>('Turnkey');
+  const [category, setCategory] = useState('Residential Villa');
   const [startDate, setStartDate] = useState('');
   const [estimatedCompletionDate, setEstimatedCompletionDate] = useState('');
   const [status, setStatus] = useState<ProjectStatus>('Active');
@@ -38,7 +39,8 @@ export const ClientModal: React.FC<ClientModalProps> = ({
       setEmail(clientToEdit.email || '');
       setAddress(clientToEdit.address || '');
       setProjectName(clientToEdit.projectName || '');
-      setProjectType(clientToEdit.projectType || 'Residential');
+      setProjectType(clientToEdit.projectType === 'Consultation' ? 'Consultation' : (clientToEdit.projectType || 'Turnkey'));
+      setCategory(clientToEdit.category || (clientToEdit.projectType && clientToEdit.projectType !== 'Turnkey' && clientToEdit.projectType !== 'Consultation' ? clientToEdit.projectType : 'Residential Villa'));
       setStartDate(clientToEdit.startDate || '');
       setEstimatedCompletionDate(clientToEdit.estimatedCompletionDate || '');
       setStatus(clientToEdit.status || 'Active');
@@ -56,7 +58,8 @@ export const ClientModal: React.FC<ClientModalProps> = ({
       setEmail('');
       setAddress('');
       setProjectName('');
-      setProjectType('Residential');
+      setProjectType('Turnkey');
+      setCategory('Residential Villa');
       setStartDate(today);
       setEstimatedCompletionDate(estFinish);
       setStatus('Active');
@@ -80,6 +83,7 @@ export const ClientModal: React.FC<ClientModalProps> = ({
           address,
           projectName,
           projectType,
+          category,
           startDate,
           estimatedCompletionDate,
           status,
@@ -130,6 +134,66 @@ export const ClientModal: React.FC<ClientModalProps> = ({
 
         {/* Scrollable Form Body */}
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 overscroll-contain">
+          {/* 1. First Option: Project Type (Turnkey or Consultation) */}
+          <div>
+            <label className="block text-[11px] font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-2">
+              Project Type *
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setProjectType('Turnkey')}
+                className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
+                  projectType === 'Turnkey'
+                    ? 'bg-[#a67d5d]/10 dark:bg-[#a67d5d]/20 border-[#a67d5d] dark:border-[#c49a79] text-[#141414] dark:text-[#f4f3ef] shadow-xs ring-1 ring-[#a67d5d] dark:ring-[#c49a79]'
+                    : 'bg-stone-50 dark:bg-[#1e1e1c] border-stone-200 dark:border-[#2f2e2b] text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-600'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    projectType === 'Turnkey'
+                      ? 'border-[#a67d5d] dark:border-[#c49a79] bg-[#a67d5d] dark:bg-[#c49a79]'
+                      : 'border-stone-300 dark:border-stone-600'
+                  }`}>
+                    {projectType === 'Turnkey' && <div className="w-1.5 h-1.5 rounded-full bg-white dark:bg-[#181817]" />}
+                  </div>
+                  <div>
+                    <span className="text-xs sm:text-sm font-bold block uppercase tracking-wider">Turnkey</span>
+                    <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
+                      Design & Build Execution
+                    </span>
+                  </div>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setProjectType('Consultation')}
+                className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
+                  projectType === 'Consultation'
+                    ? 'bg-[#a67d5d]/10 dark:bg-[#a67d5d]/20 border-[#a67d5d] dark:border-[#c49a79] text-[#141414] dark:text-[#f4f3ef] shadow-xs ring-1 ring-[#a67d5d] dark:ring-[#c49a79]'
+                    : 'bg-stone-50 dark:bg-[#1e1e1c] border-stone-200 dark:border-[#2f2e2b] text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-600'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    projectType === 'Consultation'
+                      ? 'border-[#a67d5d] dark:border-[#c49a79] bg-[#a67d5d] dark:bg-[#c49a79]'
+                      : 'border-stone-300 dark:border-stone-600'
+                  }`}>
+                    {projectType === 'Consultation' && <div className="w-1.5 h-1.5 rounded-full bg-white dark:bg-[#181817]" />}
+                  </div>
+                  <div>
+                    <span className="text-xs sm:text-sm font-bold block uppercase tracking-wider">Consultation</span>
+                    <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
+                      Design & Supervision
+                    </span>
+                  </div>
+                </div>
+              </button>
+            </div>
+          </div>
+
           {/* Client Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -179,11 +243,11 @@ export const ClientModal: React.FC<ClientModalProps> = ({
 
             <div>
               <label className="block text-[11px] font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
-                Project Type
+                Typology / Space (Optional)
               </label>
               <select
-                value={projectType}
-                onChange={(e) => setProjectType(e.target.value)}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
                 className="w-full px-3.5 py-2.5 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-sm focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817] transition-colors font-medium"
               >
                 <option value="Residential Villa">Residential Villa</option>

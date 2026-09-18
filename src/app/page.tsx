@@ -365,7 +365,7 @@ function DashboardContent() {
                         {client.status}
                       </span>
                       <span className="text-[11px] text-stone-500 dark:text-stone-400 ml-2 font-medium">
-                        {client.projectType}
+                        {client.projectType}{client.category ? ` • ${client.category}` : ''}
                       </span>
                     </div>
 

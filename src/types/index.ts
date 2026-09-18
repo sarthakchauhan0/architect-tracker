@@ -11,6 +11,7 @@ export interface Client {
   address: string;
   projectName: string;
   projectType: string;
+  category?: string;
   startDate: string;
   estimatedCompletionDate: string;
   status: ProjectStatus;

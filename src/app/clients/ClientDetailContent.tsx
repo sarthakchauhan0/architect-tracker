@@ -440,7 +440,7 @@ function ClientDetailInner() {
                   {client.status}
                 </span>
                 <span className="text-[11px] font-bold uppercase text-stone-500 tracking-wider">
-                  {client.projectType}
+                  {client.projectType}{client.category ? ` • ${client.category}` : ''}
                 </span>
               </div>
 
