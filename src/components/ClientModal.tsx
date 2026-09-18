@@ -322,9 +322,12 @@ export const ClientModal: React.FC<ClientModalProps> = ({
               General Project Notes (Optional)
             </label>
             <textarea
-              rows={2}
+              rows={3}
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
+              spellCheck="true"
+              autoCorrect="on"
+              autoCapitalize="sentences"
               placeholder="e.g. Scope includes structural, electrical, and elevation drawings. 3D renderings pending client approval."
               className="w-full px-3.5 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817] transition-colors"
             />

@@ -1011,6 +1011,9 @@ function ClientDetailInner() {
                   required
                   value={visitPurpose}
                   onChange={(e) => setVisitPurpose(e.target.value)}
+                  spellCheck="true"
+                  autoCorrect="on"
+                  autoCapitalize="sentences"
                   placeholder="e.g. Foundation inspection, Client meeting, Tile selection"
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
@@ -1023,6 +1026,9 @@ function ClientDetailInner() {
                   rows={3}
                   value={visitNotes}
                   onChange={(e) => setVisitNotes(e.target.value)}
+                  spellCheck="true"
+                  autoCorrect="on"
+                  autoCapitalize="sentences"
                   placeholder="e.g. Column reinforcement aligned with structural drawing. Checked waterproofing slope."
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
@@ -1137,6 +1143,9 @@ function ClientDetailInner() {
                   type="text"
                   value={paymentNote}
                   onChange={(e) => setPaymentNote(e.target.value)}
+                  spellCheck="true"
+                  autoCorrect="on"
+                  autoCapitalize="sentences"
                   placeholder="e.g. Drawing release stage 2, UTR #982312"
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
@@ -1219,6 +1228,9 @@ function ClientDetailInner() {
                   required
                   value={expenseDescription}
                   onChange={(e) => setExpenseDescription(e.target.value)}
+                  spellCheck="true"
+                  autoCorrect="on"
+                  autoCapitalize="sentences"
                   placeholder="e.g. Outstation site travel fuel, Blueprint printing"
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
@@ -1312,6 +1324,9 @@ function ClientDetailInner() {
                   required
                   value={issueDescription}
                   onChange={(e) => setIssueDescription(e.target.value)}
+                  spellCheck="true"
+                  autoCorrect="on"
+                  autoCapitalize="sentences"
                   placeholder="e.g. Electrical conduit clash with HVAC duct on 1st floor"
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
@@ -1325,6 +1340,9 @@ function ClientDetailInner() {
                   rows={2}
                   value={issueResolution}
                   onChange={(e) => setIssueResolution(e.target.value)}
+                  spellCheck="true"
+                  autoCorrect="on"
+                  autoCapitalize="sentences"
                   placeholder="e.g. Contractor instructed to route conduit 150mm lower as per revised schematic."
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
