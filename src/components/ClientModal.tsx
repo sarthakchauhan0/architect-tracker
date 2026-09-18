@@ -22,7 +22,7 @@ export const ClientModal: React.FC<ClientModalProps> = ({
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [projectName, setProjectName] = useState('');
-  const [projectType, setProjectType] = useState<'Turnkey' | 'Consultation' | string>('Turnkey');
+  const [projectType, setProjectType] = useState<'Turnkey' | 'Consultation' | string>('Consultation');
   const [category, setCategory] = useState('Residential Villa');
   const [startDate, setStartDate] = useState('');
   const [estimatedCompletionDate, setEstimatedCompletionDate] = useState('');
@@ -39,7 +39,7 @@ export const ClientModal: React.FC<ClientModalProps> = ({
       setEmail(clientToEdit.email || '');
       setAddress(clientToEdit.address || '');
       setProjectName(clientToEdit.projectName || '');
-      setProjectType(clientToEdit.projectType === 'Consultation' ? 'Consultation' : (clientToEdit.projectType || 'Turnkey'));
+      setProjectType(clientToEdit.projectType === 'Turnkey' ? 'Turnkey' : (clientToEdit.projectType || 'Consultation'));
       setCategory(clientToEdit.category || (clientToEdit.projectType && clientToEdit.projectType !== 'Turnkey' && clientToEdit.projectType !== 'Consultation' ? clientToEdit.projectType : 'Residential Villa'));
       setStartDate(clientToEdit.startDate || '');
       setEstimatedCompletionDate(clientToEdit.estimatedCompletionDate || '');
@@ -58,7 +58,7 @@ export const ClientModal: React.FC<ClientModalProps> = ({
       setEmail('');
       setAddress('');
       setProjectName('');
-      setProjectType('Turnkey');
+      setProjectType('Consultation');
       setCategory('Residential Villa');
       setStartDate(today);
       setEstimatedCompletionDate(estFinish);
@@ -142,32 +142,6 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
-                onClick={() => setProjectType('Turnkey')}
-                className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
-                  projectType === 'Turnkey'
-                    ? 'bg-[#a67d5d]/10 dark:bg-[#a67d5d]/20 border-[#a67d5d] dark:border-[#c49a79] text-[#141414] dark:text-[#f4f3ef] shadow-xs ring-1 ring-[#a67d5d] dark:ring-[#c49a79]'
-                    : 'bg-stone-50 dark:bg-[#1e1e1c] border-stone-200 dark:border-[#2f2e2b] text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-600'
-                }`}
-              >
-                <div className="flex items-center gap-2.5">
-                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                    projectType === 'Turnkey'
-                      ? 'border-[#a67d5d] dark:border-[#c49a79] bg-[#a67d5d] dark:bg-[#c49a79]'
-                      : 'border-stone-300 dark:border-stone-600'
-                  }`}>
-                    {projectType === 'Turnkey' && <div className="w-1.5 h-1.5 rounded-full bg-white dark:bg-[#181817]" />}
-                  </div>
-                  <div>
-                    <span className="text-xs sm:text-sm font-bold block uppercase tracking-wider">Turnkey</span>
-                    <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
-                      Design & Build Execution
-                    </span>
-                  </div>
-                </div>
-              </button>
-
-              <button
-                type="button"
                 onClick={() => setProjectType('Consultation')}
                 className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
                   projectType === 'Consultation'
@@ -187,6 +161,32 @@ export const ClientModal: React.FC<ClientModalProps> = ({
                     <span className="text-xs sm:text-sm font-bold block uppercase tracking-wider">Consultation</span>
                     <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
                       Design & Supervision
+                    </span>
+                  </div>
+                </div>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setProjectType('Turnkey')}
+                className={`p-3 sm:p-3.5 rounded-xl border text-left transition-all flex items-center justify-between cursor-pointer ${
+                  projectType === 'Turnkey'
+                    ? 'bg-[#a67d5d]/10 dark:bg-[#a67d5d]/20 border-[#a67d5d] dark:border-[#c49a79] text-[#141414] dark:text-[#f4f3ef] shadow-xs ring-1 ring-[#a67d5d] dark:ring-[#c49a79]'
+                    : 'bg-stone-50 dark:bg-[#1e1e1c] border-stone-200 dark:border-[#2f2e2b] text-stone-600 dark:text-stone-400 hover:border-stone-300 dark:hover:border-stone-600'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                    projectType === 'Turnkey'
+                      ? 'border-[#a67d5d] dark:border-[#c49a79] bg-[#a67d5d] dark:bg-[#c49a79]'
+                      : 'border-stone-300 dark:border-stone-600'
+                  }`}>
+                    {projectType === 'Turnkey' && <div className="w-1.5 h-1.5 rounded-full bg-white dark:bg-[#181817]" />}
+                  </div>
+                  <div>
+                    <span className="text-xs sm:text-sm font-bold block uppercase tracking-wider">Turnkey</span>
+                    <span className="text-[10px] text-stone-500 dark:text-stone-400 block">
+                      Design & Build Execution
                     </span>
                   </div>
                 </div>
