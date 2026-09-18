@@ -397,7 +397,7 @@ function DashboardContent() {
 
                   {/* Project & Client Headings */}
                   <div className="mb-4">
-                    <Link href={`/clients/${client.id}`} className="block group-hover:text-[#a67d5d] dark:group-hover:text-[#c49a79] transition-colors">
+                    <Link href={`/clients?id=${client.id}`} className="block group-hover:text-[#a67d5d] dark:group-hover:text-[#c49a79] transition-colors">
                       <h2 className="text-lg font-bold text-[#141414] dark:text-[#f4f3ef] tracking-tight leading-snug line-clamp-1">
                         {client.projectName}
                       </h2>
@@ -467,7 +467,7 @@ function DashboardContent() {
                     </div>
 
                     <Link
-                      href={`/clients/${client.id}`}
+                      href={`/clients?id=${client.id}`}
                       className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-stone-100 dark:bg-[#242320] hover:bg-stone-200 dark:hover:bg-[#2e2d29] text-xs font-bold uppercase tracking-wider text-stone-800 dark:text-stone-200 transition-colors"
                     >
                       Manage
@@ -503,7 +503,7 @@ function DashboardContent() {
                       <tr key={client.id} className="hover:bg-stone-50/80 dark:hover:bg-[#1e1e1c] transition-colors">
                         <td className="py-3.5 px-4">
                           <Link
-                            href={`/clients/${client.id}`}
+                            href={`/clients?id=${client.id}`}
                             className="font-bold text-[#141414] dark:text-[#f4f3ef] hover:text-[#a67d5d] dark:hover:text-[#c49a79] transition-colors text-sm block"
                           >
                             {client.projectName}
@@ -547,7 +547,7 @@ function DashboardContent() {
                         <td className="py-3.5 px-4 text-center">
                           <div className="flex items-center justify-center gap-1">
                             <Link
-                              href={`/clients/${client.id}`}
+                              href={`/clients?id=${client.id}`}
                               className="p-1.5 text-stone-400 dark:text-stone-500 hover:text-[#a67d5d] dark:hover:text-[#c49a79] transition-colors"
                               title="Open Project"
                             >

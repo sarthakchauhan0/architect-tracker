@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import {
   getClientById,
   saveClient,
@@ -68,7 +68,16 @@ import {
 function ClientDetailInner() {
   const router = useRouter();
   const routeParams = useParams();
-  const clientId = (routeParams?.id as string) || '';
+  const searchParams = useSearchParams();
+
+  // Robust client ID resolution across static export routes and query parameters:
+  const queryId = searchParams.get('id');
+  const paramId = (routeParams?.id as string);
+  const pathId = typeof window !== 'undefined'
+    ? window.location.pathname.replace(/^\/clients\/?/, '').split('/')[0]?.split('?')[0]
+    : '';
+
+  const clientId = queryId || (paramId && paramId !== '_' ? paramId : '') || (pathId && pathId !== '_' && pathId !== 'clients' ? pathId : '');
 
   const [client, setClient] = useState<Client | null>(null);
   const [visits, setVisits] = useState<Visit[]>([]);
@@ -1369,7 +1378,20 @@ function ClientDetailInner() {
 export default function ClientDetailContent() {
   return (
     <AuthGate>
-      <ClientDetailInner />
+      <Suspense
+        fallback={
+          <div className="min-h-screen flex items-center justify-center bg-[#faf9f6] dark:bg-[#0e0e0d]">
+            <div className="text-center">
+              <div className="w-8 h-8 mx-auto mb-3 border-2 border-[#a67d5d] border-t-transparent rounded-full animate-spin" />
+              <p className="text-xs uppercase tracking-[0.2em] font-semibold text-stone-500 dark:text-stone-400">
+                Loading Client Dossier...
+              </p>
+            </div>
+          </div>
+        }
+      >
+        <ClientDetailInner />
+      </Suspense>
     </AuthGate>
   );
 }
