@@ -233,31 +233,13 @@ export const generateInvoicePdf = (
   doc.setTextColor(245, 158, 11); // Amber
   doc.text(formatPdfCurrency(balanceDue, currencySymbol), summaryBoxX + summaryBoxWidth - 7, nextY + 30.5, { align: 'right' });
 
-  // 6. Bank Details & Payment Instructions (Left side)
-  const bankBoxWidth = pageWidth - 14 - summaryBoxWidth - 8 - 14;
-  doc.setFillColor(248, 250, 252);
-  doc.setDrawColor(226, 232, 240);
-  doc.roundedRect(14, nextY, bankBoxWidth, 38, 2, 2, 'FD');
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9);
-  doc.setTextColor(15, 23, 42);
-  doc.text('BANK DETAILS FOR DIRECT TRANSFER', 19, nextY + 7);
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(8);
-  doc.setTextColor(71, 85, 105);
-  doc.text(`Bank Name: ${settings.bankDetails?.bankName || 'N/A'}`, 19, nextY + 14);
-  doc.text(`Account No: ${settings.bankDetails?.accountNumber || 'N/A'}`, 19, nextY + 19);
-  doc.text(`IFSC Code: ${settings.bankDetails?.ifsc || 'N/A'}`, 19, nextY + 24);
-  doc.text(`UPI ID: ${settings.bankDetails?.upiId || 'N/A'}`, 19, nextY + 29);
-
+  // 6. Bank Details hidden for now
   // 7. Footer Sign-off
   const footerY = nextY + 50;
   doc.setFont('helvetica', 'italic');
   doc.setFontSize(8);
   doc.setTextColor(148, 163, 184);
-  doc.text('Thank you for partnering with us. Please share transaction details upon transfer.', 14, footerY);
+  doc.text('Thank you for partnering with us on your architecture project.', 14, footerY);
 
   doc.setDrawColor(203, 213, 225);
   doc.line(pageWidth - 65, footerY - 5, pageWidth - 14, footerY - 5);
