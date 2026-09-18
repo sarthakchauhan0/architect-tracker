@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #faf9f6;
   --foreground: #141414;
@@ -8,6 +10,18 @@
   --rsa-charcoal: #141414;
   --rsa-stone: #f4f3ef;
   --rsa-border: #e5e3dc;
+  color-scheme: light;
+}
+
+.dark {
+  --background: #0e0e0d;
+  --foreground: #f4f3ef;
+  --rsa-accent: #c49a79;
+  --rsa-accent-hover: #dbb393;
+  --rsa-charcoal: #f4f3ef;
+  --rsa-stone: #1a1a18;
+  --rsa-border: #292825;
+  color-scheme: dark;
 }
 
 body {
@@ -15,6 +29,7 @@ body {
   color: var(--foreground);
   -webkit-tap-highlight-color: transparent;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Custom Sleek Architectural Scrollbars */
