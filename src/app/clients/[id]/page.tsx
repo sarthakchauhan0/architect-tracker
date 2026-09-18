@@ -68,7 +68,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default function ClientDetailPage({ params }: PageProps) {
+function ClientDetailContent({ params }: PageProps) {
   const router = useRouter();
   const resolvedParams = use(params);
   const clientId = resolvedParams.id;
@@ -361,8 +361,7 @@ export default function ClientDetailPage({ params }: PageProps) {
   }
 
   return (
-    <AuthGate>
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-24 md:pb-8">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-24 md:pb-8">
         <Navbar />
 
         <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
@@ -1330,6 +1329,13 @@ export default function ClientDetailPage({ params }: PageProps) {
           isDestructive={true}
         />
       </div>
+  );
+}
+
+export default function ClientDetailPage({ params }: PageProps) {
+  return (
+    <AuthGate>
+      <ClientDetailContent params={params} />
     </AuthGate>
   );
 }

@@ -40,7 +40,7 @@ interface ClientWithMetrics extends Client {
   balanceDue: number;
 }
 
-export default function DashboardPage() {
+function DashboardContent() {
   const [clients, setClients] = useState<ClientWithMetrics[]>([]);
   const [settings, setSettings] = useState<ArchitectSettings | null>(null);
   const [loading, setLoading] = useState(true);
@@ -150,8 +150,7 @@ export default function DashboardPage() {
   };
 
   return (
-    <AuthGate>
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-20 md:pb-8">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-20 md:pb-8">
         <Navbar onOpenNewClient={() => {
           setClientToEdit(null);
           setIsClientModalOpen(true);
@@ -598,6 +597,13 @@ export default function DashboardPage() {
           isDestructive={true}
         />
       </div>
+  );
+}
+
+export default function DashboardPage() {
+  return (
+    <AuthGate>
+      <DashboardContent />
     </AuthGate>
   );
 }

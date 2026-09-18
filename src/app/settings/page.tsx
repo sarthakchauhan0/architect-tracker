@@ -24,7 +24,7 @@ import {
   ShieldAlert,
 } from 'lucide-react';
 
-export default function SettingsPage() {
+function SettingsContent() {
   const [settings, setSettings] = useState<ArchitectSettings | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -142,8 +142,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <AuthGate>
-      <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-24 md:pb-8">
+    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col pb-24 md:pb-8">
         <Navbar />
 
         <main className="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
@@ -454,6 +453,13 @@ export default function SettingsPage() {
           </div>
         </main>
       </div>
+  );
+}
+
+export default function SettingsPage() {
+  return (
+    <AuthGate>
+      <SettingsContent />
     </AuthGate>
   );
 }
