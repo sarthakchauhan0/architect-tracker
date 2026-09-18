@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "next build && npx firebase-tools deploy --only hosting",
+    "login": "firebase login",
+    "deploy": "next build && firebase deploy --only hosting",
     "lint": "eslint"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.3.5",
+    "firebase-tools": "^15.30.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
