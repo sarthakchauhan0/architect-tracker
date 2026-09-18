@@ -4,7 +4,6 @@ import {
   initializeFirestore,
   getFirestore,
   persistentLocalCache,
-  persistentMultipleTabManager,
   Firestore,
   collection,
   doc,
@@ -51,11 +50,9 @@ if (typeof window !== 'undefined' && isFirebaseConfigured) {
   if (!getApps().length) {
     app = initializeApp(firebaseConfig);
     try {
-      // Enable Firestore offline persistence with IndexedDB and multi-tab sync
+      // Enable Firestore offline persistence with IndexedDB
       db = initializeFirestore(app, {
-        localCache: persistentLocalCache({
-          tabManager: persistentMultipleTabManager(),
-        }),
+        localCache: persistentLocalCache({}),
       });
     } catch {
       db = getFirestore(app);
