@@ -1,7 +1,7 @@
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { Client, Payment, Expense, ArchitectSettings } from '@/types';
-import { formatDate, formatCurrency } from '../formatters';
+import { formatDate, formatPdfCurrency } from '../formatters';
 
 export const generateInvoicePdf = (
   client: Client,
@@ -107,7 +107,7 @@ export const generateInvoicePdf = (
     [
       '1',
       `Architectural Consultation & Project Scope\nProject: ${client.projectName} (${client.projectType})`,
-      formatCurrency(totalFee, currencySymbol),
+      formatPdfCurrency(totalFee, currencySymbol),
     ],
   ];
 
@@ -115,7 +115,7 @@ export const generateInvoicePdf = (
     chargesTable.push([
       String(idx + 2),
       `Reimbursable Site Expense: ${exp.description} (${formatDate(exp.date)})`,
-      formatCurrency(Number(exp.amount), currencySymbol),
+      formatPdfCurrency(Number(exp.amount), currencySymbol),
     ]);
   });
 
@@ -140,7 +140,7 @@ export const generateInvoicePdf = (
     columnStyles: {
       0: { cellWidth: 12, halign: 'center' },
       1: { cellWidth: 'auto' },
-      2: { cellWidth: 40, halign: 'right', fontStyle: 'bold' },
+      2: { cellWidth: 44, halign: 'right', fontStyle: 'bold' },
     },
     theme: 'striped',
   });
@@ -162,11 +162,11 @@ export const generateInvoicePdf = (
     p.type,
     p.mode,
     p.note || '-',
-    formatCurrency(Number(p.amount), currencySymbol),
+    formatPdfCurrency(Number(p.amount), currencySymbol),
   ]);
 
   if (paymentsTableData.length === 0) {
-    paymentsTableData.push(['-', '-', 'No payments recorded yet', '-', '-', formatCurrency(0, currencySymbol)]);
+    paymentsTableData.push(['-', '-', 'No payments recorded yet', '-', '-', formatPdfCurrency(0, currencySymbol)]);
   }
 
   autoTable(doc, {
@@ -190,7 +190,7 @@ export const generateInvoicePdf = (
       2: { cellWidth: 26 },
       3: { cellWidth: 26 },
       4: { cellWidth: 'auto' },
-      5: { cellWidth: 32, halign: 'right', fontStyle: 'bold' },
+      5: { cellWidth: 38, halign: 'right', fontStyle: 'bold' },
     },
     theme: 'plain',
   });
@@ -200,7 +200,7 @@ export const generateInvoicePdf = (
   // 5. Total Computation & Net Balance Due Box
   const balanceDue = grossPayable - totalPaid;
 
-  const summaryBoxWidth = 85;
+  const summaryBoxWidth = 88;
   const summaryBoxX = pageWidth - 14 - summaryBoxWidth;
   nextY += 6;
 
@@ -213,15 +213,15 @@ export const generateInvoicePdf = (
   doc.setFont('helvetica', 'normal');
   doc.setTextColor(71, 85, 105);
   doc.text('Total Agreed Fee:', summaryBoxX + 6, nextY + 7);
-  doc.text(formatCurrency(totalFee, currencySymbol), summaryBoxX + summaryBoxWidth - 6, nextY + 7, { align: 'right' });
+  doc.text(formatPdfCurrency(totalFee, currencySymbol), summaryBoxX + summaryBoxWidth - 6, nextY + 7, { align: 'right' });
 
   doc.text('Billable Site Expenses:', summaryBoxX + 6, nextY + 13);
-  doc.text(formatCurrency(totalBillableExpenses, currencySymbol), summaryBoxX + summaryBoxWidth - 6, nextY + 13, { align: 'right' });
+  doc.text(formatPdfCurrency(totalBillableExpenses, currencySymbol), summaryBoxX + summaryBoxWidth - 6, nextY + 13, { align: 'right' });
 
   doc.setFont('helvetica', 'bold');
   doc.setTextColor(16, 185, 129); // Green for payments
   doc.text('Less: Total Payments Received:', summaryBoxX + 6, nextY + 20);
-  doc.text(`- ${formatCurrency(totalPaid, currencySymbol)}`, summaryBoxX + summaryBoxWidth - 6, nextY + 20, { align: 'right' });
+  doc.text(`- ${formatPdfCurrency(totalPaid, currencySymbol)}`, summaryBoxX + summaryBoxWidth - 6, nextY + 20, { align: 'right' });
 
   // Prominent Balance Due Banner inside box
   doc.setFillColor(15, 23, 42);
@@ -229,9 +229,9 @@ export const generateInvoicePdf = (
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(9.5);
-  doc.text('BALANCE DUE:', summaryBoxX + 8, nextY + 30.5);
+  doc.text('BALANCE DUE:', summaryBoxX + 7, nextY + 30.5);
   doc.setTextColor(245, 158, 11); // Amber
-  doc.text(formatCurrency(balanceDue, currencySymbol), summaryBoxX + summaryBoxWidth - 8, nextY + 30.5, { align: 'right' });
+  doc.text(formatPdfCurrency(balanceDue, currencySymbol), summaryBoxX + summaryBoxWidth - 7, nextY + 30.5, { align: 'right' });
 
   // 6. Bank Details & Payment Instructions (Left side)
   const bankBoxWidth = pageWidth - 14 - summaryBoxWidth - 8 - 14;

@@ -10,6 +10,19 @@ export const formatCurrency = (amount: number, symbol: string = '₹'): string =
   return `${symbol}${formatted}`;
 };
 
+// jsPDF built-in fonts (Helvetica) do not support Unicode ₹ (U+20B9).
+// Using 'Rs. ' in PDFs prevents UTF-8 byte corruption and text spacing overflow.
+export const formatPdfCurrency = (amount: number, symbol: string = '₹'): string => {
+  const prefix = symbol === '₹' ? 'Rs. ' : `${symbol} `;
+  if (isNaN(amount) || amount === null || amount === undefined) {
+    return `${prefix}0`;
+  }
+  const formatted = new Intl.NumberFormat('en-IN', {
+    maximumFractionDigits: 0,
+  }).format(amount);
+  return `${prefix}${formatted}`;
+};
+
 export const formatDate = (dateInput: string | Date | null | undefined): string => {
   if (!dateInput) return '-';
   try {
