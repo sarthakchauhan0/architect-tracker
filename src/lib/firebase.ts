@@ -262,15 +262,15 @@ export const deleteIssue = async (clientId: string, issueId: string): Promise<vo
 // Settings
 export const DEFAULT_SETTINGS: ArchitectSettings = {
   architectName: 'Ar. Rahul Sharma',
-  firmName: 'Studio ArchForm Design',
-  email: 'studio@archform.in',
-  phone: '+91 98765 43210',
-  address: 'Suite 402, Design Quarter, Bengaluru, Karnataka 560001',
+  firmName: 'Rahul Sharma Architects',
+  email: 'connect@rahulsharmaarchitects.com',
+  phone: '+91 8130950761',
+  address: 'B-1, Janak Puri, New Delhi, 110059',
   bankDetails: {
     bankName: 'HDFC Bank',
     accountNumber: '50200012345678',
     ifsc: 'HDFC0001234',
-    upiId: 'archform@okhdfcbank',
+    upiId: 'rahulsharma@okhdfcbank',
   },
   currencySymbol: '₹',
   invoicePrefix: 'INV-',
@@ -283,7 +283,17 @@ export const getSettings = async (): Promise<ArchitectSettings> => {
     const docRef = doc(db, 'settings', 'profile');
     const snap = await getDoc(docRef);
     if (snap.exists()) {
-      return { ...DEFAULT_SETTINGS, ...snap.data() } as ArchitectSettings;
+      const data = snap.data();
+      // Replace previous placeholder data if found in Firestore
+      const isPlaceholder = !data.firmName || data.firmName === 'Studio ArchForm Design';
+      return {
+        ...DEFAULT_SETTINGS,
+        ...data,
+        firmName: isPlaceholder ? 'Rahul Sharma Architects' : data.firmName,
+        phone: isPlaceholder || data.phone === '+91 98765 43210' ? '+91 8130950761' : data.phone,
+        email: isPlaceholder || data.email === 'studio@archform.in' ? 'connect@rahulsharmaarchitects.com' : data.email,
+        address: isPlaceholder || data.address?.includes('Bengaluru') ? 'B-1, Janak Puri, New Delhi, 110059' : data.address,
+      } as ArchitectSettings;
     }
   } catch (err) {
     console.error('Error reading settings:', err);

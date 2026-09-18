@@ -199,7 +199,7 @@ function SettingsContent() {
                     required
                     value={firmName}
                     onChange={(e) => setFirmName(e.target.value)}
-                    placeholder="e.g. Studio ArchForm Design"
+                    placeholder="e.g. Rahul Sharma Architects"
                     className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-200 text-sm focus:outline-none focus:border-amber-500"
                   />
                 </div>
@@ -214,7 +214,7 @@ function SettingsContent() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="studio@archform.in"
+                    placeholder="connect@rahulsharmaarchitects.com"
                     className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-200 text-sm focus:outline-none focus:border-amber-500"
                   />
                 </div>
@@ -229,7 +229,7 @@ function SettingsContent() {
                     required
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
-                    placeholder="+91 98765 43210"
+                    placeholder="+91 8130950761"
                     className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-200 text-sm focus:outline-none focus:border-amber-500"
                   />
                 </div>
@@ -245,7 +245,7 @@ function SettingsContent() {
                   required
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Suite 402, Design Quarter, Bengaluru, Karnataka 560001"
+                  placeholder="B-1, Janak Puri, New Delhi, 110059"
                   className="w-full px-3.5 py-2.5 bg-slate-950 border border-slate-800 rounded-xl text-slate-200 text-sm focus:outline-none focus:border-amber-500"
                 />
               </div>

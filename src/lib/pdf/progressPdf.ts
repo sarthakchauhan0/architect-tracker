@@ -20,25 +20,26 @@ export const generateProgressUpdatePdf = (
   let currentY = 18;
 
   // Header - Firm & Architect Branding
-  doc.setFillColor(24, 32, 47); // Dark Slate Accent
-  doc.rect(0, 0, pageWidth, 28, 'F');
+  doc.setFillColor(15, 23, 42); // Dark Obsidian Slate
+  doc.rect(0, 0, pageWidth, 32, 'F');
 
   doc.setTextColor(255, 255, 255);
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(16);
-  doc.text(settings.firmName.toUpperCase(), 14, 12);
+  doc.text((settings.firmName || 'Rahul Sharma Architects').toUpperCase(), 14, 13);
 
   doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9);
+  doc.setFontSize(8.5);
   doc.setTextColor(203, 213, 225);
-  doc.text(`${settings.architectName} | ${settings.phone} | ${settings.email}`, 14, 18);
-  doc.text(settings.address, 14, 23);
+  doc.text(`${settings.architectName || 'Ar. Rahul Sharma'} | Principal Architect`, 14, 19);
+  doc.text(`${settings.phone || '+91 8130950761'} | ${settings.email || 'connect@rahulsharmaarchitects.com'}`, 14, 24);
+  doc.text(settings.address || 'B-1, Janak Puri, New Delhi, 110059', 14, 28.5);
 
   // Document Title Banner
-  currentY = 38;
+  currentY = 42;
   doc.setTextColor(15, 23, 42);
   doc.setFont('helvetica', 'bold');
-  doc.setFontSize(18);
+  doc.setFontSize(17);
   doc.text('PROJECT PROGRESS & SITE VISIT REPORT', 14, currentY);
 
   const reportDate = formatDate(new Date());
