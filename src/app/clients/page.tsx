@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import ClientDetailContent from './[id]/ClientDetailContent';
+import ClientDetailContent from './ClientDetailContent';
 
 export default function ClientsPage() {
   return <ClientDetailContent />;
