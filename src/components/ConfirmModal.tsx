@@ -25,8 +25,8 @@ export const ConfirmModal: React.FC<ConfirmModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 animate-in fade-in duration-150">
-      <div className="w-full max-w-md bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden transition-colors">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto animate-in fade-in duration-150">
+      <div className="w-full max-w-md bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden my-auto transition-colors">
         <div className="p-6">
           <div className="flex items-start gap-4">
             <div className={`p-3 rounded-xl ${isDestructive ? 'bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400 border border-rose-200 dark:border-rose-800/60' : 'bg-[#f5efe9] dark:bg-[#28211b] text-[#a67d5d] dark:text-[#d1a684] border border-[#a67d5d]/30 dark:border-[#a67d5d]/40'}`}>

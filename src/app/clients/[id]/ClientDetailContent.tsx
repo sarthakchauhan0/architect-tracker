@@ -62,6 +62,7 @@ import {
   Briefcase,
   Layers,
   FileSpreadsheet,
+  X,
 } from 'lucide-react';
 
 function ClientDetailInner() {
@@ -964,13 +965,22 @@ function ClientDetailInner() {
 
       {/* Modal: Add Visit */}
       {isAddVisitOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="w-full max-w-md bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl p-6 transition-colors">
-            <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] mb-4 flex items-center gap-2">
-              <Footprints className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
-              Log Site Inspection Visit
-            </h3>
-            <form onSubmit={handleAddVisit} className="space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+          <div className="w-full max-w-md max-h-[90dvh] flex flex-col bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden my-auto transition-colors">
+            <div className="shrink-0 flex items-center justify-between px-5 py-4 border-b border-stone-200 dark:border-[#292825] bg-stone-50/80 dark:bg-[#1f1f1d]">
+              <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] flex items-center gap-2">
+                <Footprints className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
+                Log Site Inspection Visit
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsAddVisitOpen(false)}
+                className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <form onSubmit={handleAddVisit} className="flex-1 overflow-y-auto p-5 space-y-4 overscroll-contain">
               <div>
                 <label className="block text-[11px] font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
                   Visit Date *
@@ -1008,7 +1018,7 @@ function ClientDetailInner() {
                   className="w-full px-3 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-xs focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817]"
                 />
               </div>
-              <div className="flex items-center justify-end gap-2 pt-2">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-stone-200 dark:border-[#292825]">
                 <button
                   type="button"
                   onClick={() => setIsAddVisitOpen(false)}
@@ -1030,13 +1040,22 @@ function ClientDetailInner() {
 
       {/* Modal: Add Payment */}
       {isAddPaymentOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="w-full max-w-md bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl p-6 transition-colors">
-            <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] mb-4 flex items-center gap-2">
-              <CreditCard className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
-              Record Received Payment
-            </h3>
-            <form onSubmit={handleAddPayment} className="space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+          <div className="w-full max-w-md max-h-[90dvh] flex flex-col bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden my-auto transition-colors">
+            <div className="shrink-0 flex items-center justify-between px-5 py-4 border-b border-stone-200 dark:border-[#292825] bg-stone-50/80 dark:bg-[#1f1f1d]">
+              <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] flex items-center gap-2">
+                <CreditCard className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
+                Record Received Payment
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsAddPaymentOpen(false)}
+                className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <form onSubmit={handleAddPayment} className="flex-1 overflow-y-auto p-5 space-y-4 overscroll-contain">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[11px] font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
@@ -1114,7 +1133,7 @@ function ClientDetailInner() {
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-2">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-stone-200 dark:border-[#292825]">
                 <button
                   type="button"
                   onClick={() => setIsAddPaymentOpen(false)}
@@ -1136,13 +1155,22 @@ function ClientDetailInner() {
 
       {/* Modal: Add Expense */}
       {isAddExpenseOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="w-full max-w-md bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl p-6 transition-colors">
-            <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] mb-4 flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
-              Add Site Expense
-            </h3>
-            <form onSubmit={handleAddExpense} className="space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+          <div className="w-full max-w-md max-h-[90dvh] flex flex-col bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden my-auto transition-colors">
+            <div className="shrink-0 flex items-center justify-between px-5 py-4 border-b border-stone-200 dark:border-[#292825] bg-stone-50/80 dark:bg-[#1f1f1d]">
+              <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] flex items-center gap-2">
+                <Briefcase className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
+                Add Site Expense
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsAddExpenseOpen(false)}
+                className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <form onSubmit={handleAddExpense} className="flex-1 overflow-y-auto p-5 space-y-4 overscroll-contain">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[11px] font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
@@ -1200,7 +1228,7 @@ function ClientDetailInner() {
                 </label>
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-2">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-stone-200 dark:border-[#292825]">
                 <button
                   type="button"
                   onClick={() => setIsAddExpenseOpen(false)}
@@ -1222,13 +1250,22 @@ function ClientDetailInner() {
 
       {/* Modal: Add Issue */}
       {isAddIssueOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4">
-          <div className="w-full max-w-md bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl p-6 transition-colors">
-            <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] mb-4 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
-              Log Site Coordination Item / Punch List
-            </h3>
-            <form onSubmit={handleAddIssue} className="space-y-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4 overflow-y-auto">
+          <div className="w-full max-w-md max-h-[90dvh] flex flex-col bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden my-auto transition-colors">
+            <div className="shrink-0 flex items-center justify-between px-5 py-4 border-b border-stone-200 dark:border-[#292825] bg-stone-50/80 dark:bg-[#1f1f1d]">
+              <h3 className="text-base font-bold text-[#141414] dark:text-[#f4f3ef] flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-[#a67d5d] dark:text-[#c49a79]" />
+                Log Site Coordination Item / Punch List
+              </h3>
+              <button
+                type="button"
+                onClick={() => setIsAddIssueOpen(false)}
+                className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 p-1"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+            <form onSubmit={handleAddIssue} className="flex-1 overflow-y-auto p-5 space-y-4 overscroll-contain">
               <div className="grid grid-cols-2 gap-3">
                 <div>
                   <label className="block text-[11px] font-bold text-stone-700 dark:text-stone-300 uppercase tracking-wider mb-1.5">
@@ -1284,7 +1321,7 @@ function ClientDetailInner() {
                 />
               </div>
 
-              <div className="flex items-center justify-end gap-2 pt-2">
+              <div className="flex items-center justify-end gap-2 pt-2 border-t border-stone-200 dark:border-[#292825]">
                 <button
                   type="button"
                   onClick={() => setIsAddIssueOpen(false)}

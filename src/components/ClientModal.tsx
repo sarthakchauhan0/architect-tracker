@@ -99,9 +99,13 @@ export const ClientModal: React.FC<ClientModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-4 overflow-y-auto animate-in fade-in duration-150">
-      <div className="w-full max-w-2xl bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden my-8 transition-colors">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-stone-200 dark:border-[#292825] bg-stone-50/80 dark:bg-[#1f1f1d]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs p-3 sm:p-4 overflow-hidden animate-in fade-in duration-150">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-2xl max-h-[90dvh] flex flex-col bg-white dark:bg-[#181817] border border-[#e5e3dc] dark:border-[#292825] rounded-2xl shadow-2xl overflow-hidden transition-colors"
+      >
+        {/* Header - Fixed & Sticky */}
+        <div className="shrink-0 flex items-center justify-between px-5 sm:px-6 py-4 border-b border-stone-200 dark:border-[#292825] bg-stone-50/80 dark:bg-[#1f1f1d]">
           <div className="flex items-center gap-2.5">
             <div className="p-2 rounded-lg bg-[#f5efe9] dark:bg-[#25201c] text-[#a67d5d] dark:text-[#c49a79]">
               <Building className="w-5 h-5" />
@@ -116,14 +120,16 @@ export const ClientModal: React.FC<ClientModalProps> = ({
             </div>
           </div>
           <button
+            type="button"
             onClick={onClose}
-            className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors p-1"
+            className="text-stone-400 hover:text-stone-700 dark:hover:text-stone-200 transition-colors p-1.5 rounded-lg hover:bg-stone-100 dark:hover:bg-stone-800"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-6 space-y-5">
+        {/* Scrollable Form Body */}
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5 overscroll-contain">
           {/* Client Details */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
@@ -323,26 +329,27 @@ export const ClientModal: React.FC<ClientModalProps> = ({
               className="w-full px-3.5 py-2 bg-stone-50 dark:bg-[#1e1e1c] border border-stone-200 dark:border-[#2f2e2b] rounded-lg text-stone-900 dark:text-stone-100 text-sm placeholder-stone-400 dark:placeholder-stone-500 focus:outline-none focus:border-[#a67d5d] dark:focus:border-[#c49a79] focus:bg-white dark:focus:bg-[#181817] transition-colors"
             />
           </div>
+        </div>
 
-          <div className="flex items-center justify-end gap-2.5 pt-3 border-t border-stone-200 dark:border-[#292825]">
-            <button
-              type="button"
-              onClick={onClose}
-              className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-[#252522] hover:bg-stone-200 dark:hover:bg-[#2f2e2a] rounded-lg transition-colors"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#a67d5d] hover:bg-[#8f6747] active:bg-[#7b573a] disabled:opacity-50 rounded-lg transition-colors shadow-sm shadow-[#a67d5d]/20 flex items-center gap-1.5"
-            >
-              <Save className="w-4 h-4" />
-              {isSubmitting ? 'Saving...' : clientToEdit ? 'Save Changes' : 'Register Client'}
-            </button>
-          </div>
-        </form>
-      </div>
+        {/* Footer - Fixed & Sticky */}
+        <div className="shrink-0 flex items-center justify-end gap-2.5 px-5 sm:px-6 py-3.5 border-t border-stone-200 dark:border-[#292825] bg-stone-50/90 dark:bg-[#1f1f1d]">
+          <button
+            type="button"
+            onClick={onClose}
+            className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-stone-700 dark:text-stone-300 bg-stone-100 dark:bg-[#252522] hover:bg-stone-200 dark:hover:bg-[#2f2e2a] rounded-lg transition-colors"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="px-5 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#a67d5d] hover:bg-[#8f6747] active:bg-[#7b573a] disabled:opacity-50 rounded-lg transition-colors shadow-sm shadow-[#a67d5d]/20 flex items-center gap-1.5"
+          >
+            <Save className="w-4 h-4" />
+            {isSubmitting ? 'Saving...' : clientToEdit ? 'Save Changes' : 'Register Client'}
+          </button>
+        </div>
+      </form>
     </div>
   );
 };
